@@ -196,8 +196,10 @@ struct ButtonNumber: View {
     }
     
     func switchNegPos() {
-        let temp:Double = Double(self.result) ?? 0
-        self.result = String(temp * -1)
+        if (self.result != "0") {
+            let temp:Double = Double(self.result) ?? 0
+            self.result = NSNumber(value: temp * -1).stringValue
+        }
     }
     
     func isNegativeNumber () ->Bool {
@@ -213,11 +215,11 @@ struct ButtonNumber: View {
     func percentage () {
         if (self.numA == "") {
             let temp:Double = Double(self.result) ?? 0
-            self.result = String(temp / 100)
+            self.result = NSNumber(value: temp / 100).stringValue
         } else {
             let temp:Double = Double(self.result) ?? 0
             let numA1:Double = Double(self.numA) ?? 0
-            self.result = String(numA1 * temp / 100)
+            self.result = NSNumber(value: numA1 * temp / 100).stringValue
             self.numB = self.result
         }
         
